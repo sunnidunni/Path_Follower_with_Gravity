@@ -10,18 +10,21 @@ namespace PathCreation.Examples
     {
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
-        public double speed;
+        public double speed; //initial velocity
+        public GameObject obj; //cart
+        public double g; //gravitational acceleration
         double distanceTravelled;
-        public GameObject obj;
-        public double g;
         double energy;
-        double v;
-        double prevx;
-        double prevy;
-        double dx;
-        double dy;
-        double Fn;
-        public double fric;
+        double v; 
+
+        //friction calc
+
+        // double prevx;
+        // double prevy;
+        // double dx;
+        // double dy;
+        // double Fn;
+        // public double fric;
 
 
 
@@ -30,10 +33,11 @@ namespace PathCreation.Examples
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
-                
-                energy = 57.9331 * g;
-                prevx = obj.transform.position.x;
-                prevy = obj.transform.position.y;
+                //energy = mgh, m = 1
+                energy = 57.9331  * g;
+
+                // prevx = obj.transform.position.x;
+                // prevy = obj.transform.position.y;
 
             }
         }
@@ -54,8 +58,8 @@ namespace PathCreation.Examples
                 distanceTravelled += v * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance((float)distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance((float)distanceTravelled, endOfPathInstruction);
-                prevx = obj.transform.position.x;
-                prevy = obj.transform.position.y;
+                // prevx = obj.transform.position.x;
+                // prevy = obj.transform.position.y;
 
             }
         }
